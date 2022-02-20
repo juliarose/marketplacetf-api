@@ -1,0 +1,11 @@
+use serde::{Deserialize};
+use super::SaleItem;
+
+#[derive(Deserialize, Clone, Debug)]
+pub struct Sale {
+    pub id: String,
+    pub earned_credit: u32,
+    pub paid: bool,
+    pub time: u32,
+    pub items: Vec<SaleItem>,
+}
