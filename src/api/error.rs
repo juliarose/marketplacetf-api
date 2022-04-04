@@ -1,5 +1,3 @@
-use reqwest;
-use anyhow;
 use thiserror::Error;
 
 // pub const RESPONSE_UNSUCCESSFUL_MESSAGE: &str = "Empty response";

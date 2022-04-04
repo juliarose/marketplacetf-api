@@ -1,6 +1,6 @@
-mod api;
+mod marketplacetf_api;
 mod error;
 mod helpers;
 
-pub use api::MarketplaceAPI;
+pub use marketplacetf_api::MarketplaceAPI;
 pub use error::APIError;

@@ -1,6 +1,6 @@
-use serde::{Deserialize};
+use serde::{Serialize, Deserialize};
 
-#[derive(Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Item {
     pub id: u64,
     pub original_id: u64,
