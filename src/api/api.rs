@@ -11,7 +11,6 @@ use crate::response;
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
 
-const HOSTNAME: &str = "marketplace.tf";
 const USER_AGENT_STRING: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
 
 pub struct MarketplaceAPI {
@@ -21,6 +20,8 @@ pub struct MarketplaceAPI {
 }
 
 impl MarketplaceAPI {
+    
+    const HOSTNAME: &'static str = "marketplace.tf";
     
     pub fn new(key: String) -> Self {
         let cookies = Arc::new(Jar::default());
@@ -33,7 +34,7 @@ impl MarketplaceAPI {
     }
     
     fn get_uri(&self, pathname: &str) -> String {
-        format!("{}{}", HOSTNAME, pathname)
+        format!("https://{}{}", Self::HOSTNAME, pathname)
     }
 
     fn get_api_uri(&self, endpoint: &str) -> String {
