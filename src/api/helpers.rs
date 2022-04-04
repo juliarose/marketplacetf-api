@@ -36,6 +36,7 @@ where
     
     let status = &response.status();
     
+    
     match status.as_u16() {
         300..=399 => {
             Err(APIError::Http(*status))

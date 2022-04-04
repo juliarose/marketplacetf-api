@@ -15,7 +15,6 @@ const USER_AGENT_STRING: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537
 
 pub struct MarketplaceAPI {
     key: String,
-    cookies: Arc<Jar>,
     client: ClientWithMiddleware,
 }
 
@@ -28,7 +27,6 @@ impl MarketplaceAPI {
         
         Self {
             key,
-            cookies: Arc::clone(&cookies),
             client: get_default_middleware(Arc::clone(&cookies), USER_AGENT_STRING),
         }
     }
@@ -47,7 +45,8 @@ impl MarketplaceAPI {
             key: &'a str,
         }
         
-        let response = self.client.get(self.get_api_uri("/GetDashboardItems/v2"))
+        let url = self.get_api_uri("/GetDashboardItems/v2");
+        let response = self.client.get(url)
             .query(&GetDashboardItemsParams {
                 key: &self.key,
             })
@@ -66,7 +65,8 @@ impl MarketplaceAPI {
             start_before: Option<u32>,
         }
         
-        let response = self.client.get(self.get_api_uri("/GetSales/v2"))
+        let url = self.get_api_uri("/GetSales/v2");
+        let response = self.client.get(url)
             .query(&GetSalesParams {
                 key: &self.key,
                 num,
