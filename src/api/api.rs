@@ -7,10 +7,7 @@ use super::{
         parses_response
     }
 };
-use crate::{
-    response,
-    request
-};
+use crate::response;
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
 
@@ -60,19 +57,19 @@ impl MarketplaceAPI {
         Ok(body)
     }
     
-    pub async fn get_sales(&self, query: &request::sale::GetSales) -> Result<Vec<response::Sale>, APIError> {
+    pub async fn get_sales(&self, num: u32, start_before: Option<u32>) -> Result<Vec<response::Sale>, APIError> {
         #[derive(Serialize, Debug)]
         struct GetSalesParams<'a> {
             key: &'a str,
-            num: Option<u32>,
+            num: u32,
             start_before: Option<u32>,
         }
         
         let response = self.client.get(self.get_api_uri("/GetSales/v2"))
             .query(&GetSalesParams {
                 key: &self.key,
-                num: query.num,
-                start_before: query.start_before,
+                num,
+                start_before,
             })
             .send()
             .await?;
