@@ -3,19 +3,13 @@
 Interface for marketplace.tf API endpoints.
 
 ```rs
-use marketplacetf_api::{
-    MarketplaceAPI,
-    request::GetSales
-};
+use marketplacetf_api::MarketplaceAPI;
 
 let key = "XXXXXXXXXXXXXXXXXXXXXXXX";
 let marketplacetf = MarketplaceAPI::new(key);
 
-match marketplacetf.get_sales(&GetSales {
-    num: Some(10),
-    start_before: None,
-}).await {
-    Ok(response) => println!("{:?}", response),
+match marketplacetf.get_sales(10, None).await {
+    Ok(sales) => println!("{:?}", sales),
     Err(error) => println!("Error loading sales: {}", error),
 }
 ```
