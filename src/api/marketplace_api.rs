@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::Serialize;
 use std::sync::Arc;
 use super::{
     APIError,
@@ -7,6 +7,7 @@ use super::{
         parses_response
     }
 };
+use super::api_response;
 use crate::response;
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
@@ -74,13 +75,8 @@ impl MarketplaceAPI {
             })
             .send()
             .await?;
-        let body: GetSalesResponse = parses_response(response).await?;
+        let body: api_response::GetSalesResponse = parses_response(response).await?;
         
         Ok(body.sales)
     }
-}
-        
-#[derive(Deserialize, Clone, Debug)]
-struct GetSalesResponse {
-    sales: Vec<response::Sale>,
 }

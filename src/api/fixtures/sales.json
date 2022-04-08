@@ -1,0 +1,211 @@
+{
+    "success": true,
+    "sales": [
+        {
+            "id": "MPTF-1649388261-8ZGWGJ25YTNGULD",
+            "earned_credit": 3,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485377299,
+                    "original_id": 11478668007,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                }
+            ],
+            "time": 1649388280
+        },
+        {
+            "id": "MPTF-1649387259-V7FSKCS8KTB9LPF",
+            "earned_credit": 3,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485336753,
+                    "original_id": 11478654471,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                }
+            ],
+            "time": 1649387282
+        },
+        {
+            "id": "MPTF-1649387147-V6OF7P74MIM8KS2",
+            "earned_credit": 189,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485333539,
+                    "original_id": 11421837638,
+                    "name": "Strange Gold Botkiller Scattergun Mk.II",
+                    "price": 210,
+                    "sku": "973;11"
+                }
+            ],
+            "time": 1649387206
+        },
+        {
+            "id": "MPTF-1649386152-SYORI6OPHVFBUIO",
+            "earned_credit": 39,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485319236,
+                    "original_id": 9771536132,
+                    "name": "Wipe Out Wraps",
+                    "price": 43,
+                    "sku": "30990;6"
+                }
+            ],
+            "time": 1649386404
+        },
+        {
+            "id": "MPTF-1649385784-DYN1MPF5RZUIL1C",
+            "earned_credit": 224,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485318127,
+                    "original_id": 11378790170,
+                    "name": "Uncraftable Winter 2018 Cosmetic Key",
+                    "price": 249,
+                    "sku": "5901;6;uncraftable"
+                }
+            ],
+            "time": 1649385804
+        },
+        {
+            "id": "MPTF-1649385182-23MHFVVAPM97BBQ",
+            "earned_credit": 3,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485256992,
+                    "original_id": 11453813400,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                }
+            ],
+            "time": 1649385299
+        },
+        {
+            "id": "MPTF-1649384667-R26USEAELHZBGXW",
+            "earned_credit": 24,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485233402,
+                    "original_id": 10595071632,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233395,
+                    "original_id": 11224613949,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233386,
+                    "original_id": 11309336486,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233383,
+                    "original_id": 11378944206,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233378,
+                    "original_id": 11466596798,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233373,
+                    "original_id": 11466641642,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233370,
+                    "original_id": 10049600486,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485233365,
+                    "original_id": 9325038122,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                }
+            ],
+            "time": 1649384678
+        },
+        {
+            "id": "MPTF-1649384430-HUD4UJMSOV1DF6B",
+            "earned_credit": 32,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485232417,
+                    "original_id": 11416017012,
+                    "name": "Strange Revolver",
+                    "price": 35,
+                    "sku": "210;11"
+                }
+            ],
+            "time": 1649384638
+        },
+        {
+            "id": "MPTF-1649383416-G0EGLW0QZ835M5X",
+            "earned_credit": 40,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485190073,
+                    "original_id": 11416552617,
+                    "name": "Name Tag",
+                    "price": 44,
+                    "sku": "5020;6"
+                }
+            ],
+            "time": 1649383434
+        },
+        {
+            "id": "MPTF-1649382148-EIOT4SO5RII7ZYC",
+            "earned_credit": 6,
+            "paid": true,
+            "items": [
+                {
+                    "id": 11485140983,
+                    "original_id": 10426525985,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                },
+                {
+                    "id": 11485140972,
+                    "original_id": 11471244133,
+                    "name": "Refined Metal",
+                    "price": 4,
+                    "sku": "5002;6"
+                }
+            ],
+            "time": 1649382210
+        }
+    ]
+}
