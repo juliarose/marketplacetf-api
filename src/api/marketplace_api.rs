@@ -84,12 +84,3 @@ impl MarketplaceAPI {
 struct GetSalesResponse {
     sales: Vec<response::Sale>,
 }
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
