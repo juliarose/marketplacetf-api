@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 use crate::SKU;
 use marketplace_sku::tf2_enum::Quality;
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Item {
     pub sku: SKU,
     pub full_sku: SKU,

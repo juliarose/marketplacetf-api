@@ -26,12 +26,34 @@ impl MarketplaceAPI {
         }
     }
     
-    fn get_uri(&self, pathname: &str) -> String {
+    fn uri(&self, pathname: &str) -> String {
         format!("https://{}{}", Self::HOSTNAME, pathname)
     }
 
-    fn get_api_uri(&self, endpoint: &str) -> String {
-        format!("{}{}", self.get_uri("/api/Seller"), endpoint)
+    fn seller_api_uri(&self, endpoint: &str) -> String {
+        format!("{}{}", self.uri("/api/Seller"), endpoint)
+    }
+
+    fn bots_api_uri(&self, endpoint: &str) -> String {
+        format!("{}{}", self.uri("/api/Bots"), endpoint)
+    }
+    
+    pub async fn get_bots(&self) -> Result<Vec<response::Bot>, Error> {
+        #[derive(Serialize, Debug)]
+        struct GetBotsParams<'a> {
+            key: &'a str,
+        }
+        
+        let url = self.bots_api_uri("/GetBots/v2");
+        let response = self.client.get(url)
+            .query(&GetBotsParams {
+                key: &self.key,
+            })
+            .send()
+            .await?;
+        let body: api_response::GetBotsResponse = helpers::parses_response(response).await?;
+        
+        Ok(body.bots)
     }
     
     pub async fn get_dashboard_items(&self) -> Result<response::DashboardDetails, Error> {
@@ -40,7 +62,7 @@ impl MarketplaceAPI {
             key: &'a str,
         }
         
-        let url = self.get_api_uri("/GetDashboardItems/v2");
+        let url = self.seller_api_uri("/GetDashboardItems/v2");
         let response = self.client.get(url)
             .query(&GetDashboardItemsParams {
                 key: &self.key,
@@ -60,7 +82,7 @@ impl MarketplaceAPI {
             start_before: Option<u32>,
         }
         
-        let url = self.get_api_uri("/GetSales/v2");
+        let url = self.seller_api_uri("/GetSales/v2");
         let response = self.client.get(url)
             .query(&GetSalesParams {
                 key: &self.key,
