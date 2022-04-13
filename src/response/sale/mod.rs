@@ -1,6 +1,6 @@
 mod item;
 
-pub use item::Item as SaleItem;
+pub use item::Item;
 
 use serde::{Serialize, Deserialize};
 
@@ -10,5 +10,5 @@ pub struct Sale {
     pub earned_credit: u32,
     pub paid: bool,
     pub time: u32,
-    pub items: Vec<SaleItem>,
+    pub items: Vec<Item>,
 }

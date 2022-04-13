@@ -1,10 +1,7 @@
 mod api;
+
 pub mod response;
+pub mod error;
 
-pub use api::{
-    MarketplaceAPI,
-    APIError
-};
-
-pub use marketplace_sku;
-pub use marketplace_sku::SKU;
+pub use api::MarketplaceAPI;
+pub use marketplace_sku::{self, SKU};

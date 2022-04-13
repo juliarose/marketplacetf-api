@@ -6,7 +6,6 @@ pub struct GetSalesResponse {
     pub sales: Vec<response::Sale>,
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

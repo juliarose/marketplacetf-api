@@ -1,14 +1,8 @@
 use serde::Serialize;
 use std::sync::Arc;
-use super::{
-    APIError,
-    helpers::{
-        get_default_middleware,
-        parses_response
-    }
-};
+use super::helpers;
 use super::api_response;
-use crate::response;
+use crate::{response, error::Error};
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
 
@@ -28,7 +22,7 @@ impl MarketplaceAPI {
         
         Self {
             key: key.into(),
-            client: get_default_middleware(Arc::clone(&cookies), USER_AGENT_STRING),
+            client: helpers::get_default_middleware(Arc::clone(&cookies), USER_AGENT_STRING),
         }
     }
     
@@ -40,7 +34,7 @@ impl MarketplaceAPI {
         format!("{}{}", self.get_uri("/api/Seller"), endpoint)
     }
     
-    pub async fn get_dashboard_items(&self) -> Result<response::DashboardDetails, APIError> {
+    pub async fn get_dashboard_items(&self) -> Result<response::DashboardDetails, Error> {
         #[derive(Serialize, Debug)]
         struct GetDashboardItemsParams<'a> {
             key: &'a str,
@@ -53,12 +47,12 @@ impl MarketplaceAPI {
             })
             .send()
             .await?;
-        let body: response::DashboardDetails = parses_response(response).await?;
+        let body: response::DashboardDetails = helpers::parses_response(response).await?;
         
         Ok(body)
     }
     
-    pub async fn get_sales(&self, num: u32, start_before: Option<u32>) -> Result<Vec<response::Sale>, APIError> {
+    pub async fn get_sales(&self, num: u32, start_before: Option<u32>) -> Result<Vec<response::Sale>, Error> {
         #[derive(Serialize, Debug)]
         struct GetSalesParams<'a> {
             key: &'a str,
@@ -75,7 +69,7 @@ impl MarketplaceAPI {
             })
             .send()
             .await?;
-        let body: api_response::GetSalesResponse = parses_response(response).await?;
+        let body: api_response::GetSalesResponse = helpers::parses_response(response).await?;
         
         Ok(body.sales)
     }
