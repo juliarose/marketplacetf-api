@@ -21,9 +21,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parses_sales() {
-        let response: GetSalesResponse = serde_json::from_str(include_str!("fixtures/sales.json")).unwrap();
+    fn parses_get_sales() {
+        let response: GetSalesResponse = serde_json::from_str(include_str!("fixtures/get_sales.json")).unwrap();
         
         assert_eq!(response.sales.first().unwrap().earned_credit, 3);
+    }
+    
+    #[test]
+    fn parses_get_bans() {
+        let response: GetBansResponse = serde_json::from_str(include_str!("fixtures/get_bans.json")).unwrap();
+        
+        assert_eq!(response.results.first().unwrap().banned, true);
     }
 }

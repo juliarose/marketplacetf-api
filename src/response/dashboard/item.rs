@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 use crate::SKU;
-use marketplace_sku::tf2_enum::Quality;
+use crate::tf2_enum::Quality;
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Item {
