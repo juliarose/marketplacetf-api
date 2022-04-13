@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "results": [
+        {
+            "steamid": "76561197963500354",
+            "id": 326287,
+            "name": "*CriminaL^",
+            "banned": true,
+            "ban": {
+                "time": 1608511043,
+                "type": "COMMUNITY"
+            },
+            "seller": true
+        }
+    ]
+}
