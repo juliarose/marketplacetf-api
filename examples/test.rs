@@ -1,8 +1,3 @@
-# marketplacetf-api
-
-Interface for marketplace.tf API endpoints.
-
-```rs
 use marketplacetf_api::{MarketplaceAPI, error::Error};
 
 #[tokio::main]
@@ -17,13 +12,8 @@ async fn main() -> Result<(), Error> {
             .map(|item| item.name.as_str())
             .collect::<Vec<_>>();
         
-        println!("Sold {} for ${:.2}!", names.join(", "), f32::from(sale.earned_credit) / 100.0);
+        println!("Sold {} for ${:.2}!", names.join(", "), sale.earned_credit as f32 / 100.0);
     }
     
     Ok(())
 }
-```
-
-## License
-
-MIT

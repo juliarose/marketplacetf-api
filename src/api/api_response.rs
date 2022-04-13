@@ -11,7 +11,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parses_delete_listings() {
+    fn parses_sales() {
         let response: GetSalesResponse = serde_json::from_str(include_str!("fixtures/sales.json")).unwrap();
         
         assert_eq!(response.sales.first().unwrap().earned_credit, 3);

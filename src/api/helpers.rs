@@ -31,11 +31,10 @@ where
 {
     #[derive(Deserialize, Debug)]
     struct ErrorResponse {
-        message: String,
+        error: String,
     }
     
     let status = &response.status();
-    
     
     match status.as_u16() {
         300..=399 => {
@@ -57,7 +56,7 @@ where
                 Err(parse_error) => {
                     // unexpected response
                     if let Ok(error_body) = serde_json::from_slice::<ErrorResponse>(body) { 
-                        Err(Error::Response(error_body.message))
+                        Err(Error::Response(error_body.error))
                     } else {
                         Err(parse_error.into())
                     }
