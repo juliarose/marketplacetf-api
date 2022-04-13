@@ -11,6 +11,11 @@ pub struct GetBotsResponse {
     pub bots: Vec<response::Bot>,
 }
 
+#[derive(Deserialize, Debug)]
+pub struct GetBansResponse {
+    pub results: Vec<response::UserBan>,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

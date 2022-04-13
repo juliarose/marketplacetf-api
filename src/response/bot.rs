@@ -1,6 +1,5 @@
-
 use serde::{Serialize, Deserialize};
-use steamid_ng::SteamID;
+use crate::SteamID;
 
 #[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Bot {

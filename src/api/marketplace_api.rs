@@ -5,6 +5,7 @@ use super::api_response;
 use crate::{response, error::Error};
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
+use crate::SteamID;
 
 const USER_AGENT_STRING: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
 
@@ -37,6 +38,10 @@ impl MarketplaceAPI {
     fn bots_api_uri(&self, endpoint: &str) -> String {
         format!("{}{}", self.uri("/api/Bots"), endpoint)
     }
+
+    fn bans_api_uri(&self, endpoint: &str) -> String {
+        format!("{}{}", self.uri("/api/Bots"), endpoint)
+    }
     
     pub async fn get_bots(&self) -> Result<Vec<response::Bot>, Error> {
         #[derive(Serialize, Debug)]
@@ -54,6 +59,30 @@ impl MarketplaceAPI {
         let body: api_response::GetBotsResponse = helpers::parses_response(response).await?;
         
         Ok(body.bots)
+    }
+    
+    pub async fn get_ban(&self, steamid: &SteamID) -> Result<response::UserBan, Error> {
+        #[derive(Serialize, Debug)]
+        struct GetBansParams<'a, 'b> {
+            key: &'a str,
+            steamid: &'b SteamID,
+        }
+        
+        let url = self.bans_api_uri("/GetBans/v2");
+        let response = self.client.get(url)
+            .query(&GetBansParams {
+                key: &self.key,
+                steamid,
+            })
+            .send()
+            .await?;
+        let body: api_response::GetBansResponse = helpers::parses_response(response).await?;
+        
+        if let Some(ban) = body.results.first() {
+            Ok(ban.to_owned())
+        } else {
+            Err(Error::Response("Empty results".into()))
+        }
     }
     
     pub async fn get_dashboard_items(&self) -> Result<response::DashboardDetails, Error> {
