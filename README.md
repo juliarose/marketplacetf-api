@@ -18,6 +18,8 @@ async fn main() -> Result<(), Error> {
             .collect::<Vec<_>>();
         
         println!("Sold {} for ${:.2}!", names.join(", "), f32::from(sale.earned_credit) / 100.0);
+    } else {
+        println!("You have not sold anything :(");
     }
     
     Ok(())
