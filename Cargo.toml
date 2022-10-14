@@ -25,7 +25,7 @@ tf2-enum = "0.1.1"
 steamid-ng = "1.0.0"
 anyhow = "^1.0"
 thiserror = "^1.0.30"
-tf2-sku = { version = "0", path = "../tf2-sku" }
+tf2-sku = "0"
 
 [dev-dependencies]
 tokio = { version = "1", features = ["full"] }
