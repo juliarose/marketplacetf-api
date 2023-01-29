@@ -6,7 +6,7 @@ async fn main() -> Result<(), Error> {
     let marketplacetf = MarketplaceAPI::new(key);
     let bots = marketplacetf.get_bots().await?;
     
-    println!("{:?}", bots);
+    println!("{bots:?}");
     
     Ok(())
 }

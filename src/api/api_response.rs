@@ -31,6 +31,6 @@ mod tests {
     fn parses_get_bans() {
         let response: GetBansResponse = serde_json::from_str(include_str!("fixtures/get_bans.json")).unwrap();
         
-        assert_eq!(response.results.first().unwrap().banned, true);
+        assert!(response.results.first().unwrap().banned);
     }
 }
