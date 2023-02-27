@@ -21,7 +21,6 @@ serde_repr = "0.1"
 strum = { version = "0.23", features = ["derive"] }
 strum_macros = "0.23"
 chrono = { version = "0.4", features = ["serde"] }
-tf2-enum = "^0.8.0"
 steamid-ng = "1.0.0"
 anyhow = "^1.0"
 thiserror = "^1.0.30"
