@@ -1,23 +1,28 @@
-use serde::Serialize;
-use std::sync::Arc;
 use super::helpers;
 use super::api_response;
-use crate::{response, error::Error};
+use crate::response::{User, Bot, DashboardDetails, Sale};
+use crate::error::Error;
+use crate::SteamID;
+use std::sync::Arc;
+use serde::Serialize;
 use reqwest::cookie::Jar;
 use reqwest_middleware::ClientWithMiddleware;
-use crate::SteamID;
 
 const USER_AGENT_STRING: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
 
+/// API for interacting with marketplace.tf
+#[derive(Debug)]
 pub struct MarketplaceAPI {
+    /// The API key.
     key: String,
+    /// The HTTP client.
     client: ClientWithMiddleware,
 }
 
 impl MarketplaceAPI {
-    
     const HOSTNAME: &'static str = "marketplace.tf";
     
+    /// Creates a new instance of the API.
     pub fn new(key: &str) -> Self {
         let cookies = Arc::new(Jar::default());
         
@@ -27,23 +32,28 @@ impl MarketplaceAPI {
         }
     }
     
+    /// Gets the URI for a given pathname.
     fn uri(&self, pathname: &str) -> String {
         format!("https://{}{}", Self::HOSTNAME, pathname)
     }
-
+    
+    /// Gets the URI for the seller API.
     fn seller_api_uri(&self, endpoint: &str) -> String {
         format!("{}{}", self.uri("/api/Seller"), endpoint)
     }
-
+    
+    /// Gets the URI for the bots API.
     fn bots_api_uri(&self, endpoint: &str) -> String {
         format!("{}{}", self.uri("/api/Bots"), endpoint)
     }
-
+    
+    /// Gets the URI for the bans API.
     fn bans_api_uri(&self, endpoint: &str) -> String {
         format!("{}{}", self.uri("/api/Bots"), endpoint)
     }
     
-    pub async fn get_bots(&self) -> Result<Vec<response::Bot>, Error> {
+    /// Gets a list of available marketplace.tf bots.
+    pub async fn get_bots(&self) -> Result<Vec<Bot>, Error> {
         #[derive(Serialize, Debug)]
         struct GetBotsParams<'a> {
             key: &'a str,
@@ -61,7 +71,8 @@ impl MarketplaceAPI {
         Ok(body.bots)
     }
     
-    pub async fn get_ban(&self, steamid: &SteamID) -> Result<response::UserBan, Error> {
+    /// Gets a ban for a given SteamID.
+    pub async fn get_ban(&self, steamid: &SteamID) -> Result<User, Error> {
         #[derive(Serialize, Debug)]
         struct GetBansParams<'a, 'b> {
             key: &'a str,
@@ -85,7 +96,8 @@ impl MarketplaceAPI {
         }
     }
     
-    pub async fn get_dashboard_items(&self) -> Result<response::DashboardDetails, Error> {
+    /// Gets your dashboard items.
+    pub async fn get_dashboard_items(&self) -> Result<DashboardDetails, Error> {
         #[derive(Serialize, Debug)]
         struct GetDashboardItemsParams<'a> {
             key: &'a str,
@@ -98,12 +110,13 @@ impl MarketplaceAPI {
             })
             .send()
             .await?;
-        let body: response::DashboardDetails = helpers::parses_response(response).await?;
+        let body: DashboardDetails = helpers::parses_response(response).await?;
         
         Ok(body)
     }
     
-    pub async fn get_sales(&self, num: u32, start_before: Option<u32>) -> Result<Vec<response::Sale>, Error> {
+    /// Gets your sales.
+    pub async fn get_sales(&self, num: u32, start_before: Option<u32>) -> Result<Vec<Sale>, Error> {
         #[derive(Serialize, Debug)]
         struct GetSalesParams<'a> {
             key: &'a str,

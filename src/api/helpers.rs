@@ -1,9 +1,12 @@
-use std::sync::Arc;
-use reqwest_middleware::{ClientBuilder, ClientWithMiddleware};
-use reqwest::{header, cookie::CookieStore};
-use reqwest_retry::{RetryTransientMiddleware, policies::ExponentialBackoff};
-use serde::{Deserialize, de::DeserializeOwned};
 use crate::error::Error;
+use std::sync::Arc;
+use reqwest::header;
+use reqwest::cookie::CookieStore;
+use reqwest_retry::RetryTransientMiddleware;
+use reqwest_retry::policies::ExponentialBackoff;
+use reqwest_middleware::{ClientBuilder, ClientWithMiddleware};
+use serde::Deserialize;
+use serde::de::DeserializeOwned;
 
 pub fn get_default_middleware<T>(cookie_store: Arc<T>, user_agent_string: &'static str) -> ClientWithMiddleware
 where

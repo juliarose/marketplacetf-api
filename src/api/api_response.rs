@@ -1,6 +1,6 @@
-use serde::Deserialize;
 use crate::response;
-        
+use serde::Deserialize;
+
 #[derive(Deserialize, Debug)]
 pub struct GetSalesResponse {
     pub sales: Vec<response::Sale>,
@@ -13,7 +13,7 @@ pub struct GetBotsResponse {
 
 #[derive(Deserialize, Debug)]
 pub struct GetBansResponse {
-    pub results: Vec<response::UserBan>,
+    pub results: Vec<response::User>,
 }
 
 #[cfg(test)]
