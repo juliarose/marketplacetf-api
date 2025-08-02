@@ -34,16 +34,3 @@ impl Error {
         }
     }
 }
-
-impl From<reqwest_middleware::Error> for Error {
-    fn from(error: reqwest_middleware::Error) -> Error {
-        match error {
-            reqwest_middleware::Error::Reqwest(e) => {
-                Error::Reqwest(e)
-            },
-            reqwest_middleware::Error::Middleware(e) => {
-                Error::ReqwestMiddleware(e)
-            },
-        }
-    }
-}

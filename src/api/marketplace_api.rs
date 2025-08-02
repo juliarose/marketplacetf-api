@@ -6,7 +6,7 @@ use crate::SteamID;
 use std::sync::Arc;
 use serde::Serialize;
 use reqwest::cookie::Jar;
-use reqwest_middleware::ClientWithMiddleware;
+use reqwest::Client;
 
 const USER_AGENT_STRING: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36";
 
@@ -16,7 +16,7 @@ pub struct MarketplaceAPI {
     /// The API key.
     key: String,
     /// The HTTP client.
-    client: ClientWithMiddleware,
+    client: Client,
 }
 
 impl MarketplaceAPI {
@@ -28,7 +28,7 @@ impl MarketplaceAPI {
         
         Self {
             key: key.into(),
-            client: helpers::get_default_middleware(Arc::clone(&cookies), USER_AGENT_STRING),
+            client: helpers::get_default_client(Arc::clone(&cookies), USER_AGENT_STRING),
         }
     }
     
