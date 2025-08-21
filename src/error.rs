@@ -1,3 +1,4 @@
+
 /// An error occurred while interacting with the marketplace.tf API.
 #[derive(Debug, thiserror::Error)]
 pub enum Error {

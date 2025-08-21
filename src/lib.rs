@@ -1,3 +1,5 @@
+//! Interface for interacting with the marketplace.tf API.
+
 mod api;
 
 pub mod response;
